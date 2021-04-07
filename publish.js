@@ -249,6 +249,7 @@ function generate(type, title, docs, filename, resolveLinks) {
   resolveLinks = resolveLinks === false ? false : true
 
   var docData = {
+    // MAICTODO: can we add here the custom nav?
     type: type,
     title: title,
     docs: docs
@@ -353,6 +354,7 @@ function buildNav(members) {
   var seen = {}
   var seenTutorials = {}
 
+  // MAICTODO: move to separate homenav item
   nav.push(buildNavLink('home', '<a href="index.html">Home</a>'))
 
   nav = nav.concat(buildMemberNav(members.tutorials, "Tutorials", seenTutorials, linktoTutorial))
@@ -388,7 +390,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
   if (items && items.length) {
     var itemsNav = ""
 
-    nav.push(buildNavHeading(itemHeading))
+    nav.push(buildNavHeading(itemHeading, 'type-container'))
 
     items.forEach(function(item) {
       var methods = find({ kind: "function", memberof: item.longname })
@@ -430,12 +432,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
         }
 
-        if (methods.length) {
+        if (methods.length && conf.default.showMethodsInNav !== false) {
           methods.forEach(function(method) {
             if (method.inherited && conf.default.showInheritedInNav === false) {
-              return
-            }
-            if (conf.default.showMethodsInNav === false) {
               return
             }
 
@@ -759,6 +758,9 @@ exports.publish = function(taffyData, opts, tutorials) {
   var mixins = taffy(members.mixins)
   var externals = taffy(members.externals)
   var interfaces = taffy(members.interfaces)
+
+  // MAICTODO: for each of the above, attach a page nav
+  // view.pageNav[longname] = buildNav(each class...)
 
   Object.keys(helper.longnameToUrl).forEach(function(longname) {
     var myModules = helper.find(modules, { longname: longname })

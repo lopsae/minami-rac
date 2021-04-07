@@ -243,6 +243,10 @@ nav li {
   font-weight: bold;
 }
 
+.nav-heading.no-members {
+  margin-top: 0px;
+}
+
 .nav-heading a {
   color: #888;
   font-size: 14px;

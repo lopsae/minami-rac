@@ -420,7 +420,14 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
         if (itemHeading === 'Tutorials') {
           nav.push(buildNavItem(linktoFn(item.longname, displayName)))
         } else {
-          nav.push(buildNavHeading(buildNavType(item.kind, linktoFn(item.longname, displayName))))
+          if (conf.default.showMethodsInNav == false && conf.default.showMembersInNav === false) {
+            // No members
+            var content = buildNavType(item.kind, linktoFn(item.longname, displayName))
+            nav.push(buildNavHeading(content, 'no-members'))
+          } else {
+            nav.push(buildNavHeading(buildNavType(item.kind, linktoFn(item.longname, displayName))))
+          }
+
         }
 
         if (methods.length) {
@@ -473,11 +480,15 @@ function buildNavLink (linkClass, linkContent) {
  * for headings and filenames.
  *
  * @param {String} content navigation header content
+ * @param {String} cssClass additional class to use
  * @return {String}
  */
-function buildNavHeading (content) {
+function buildNavHeading (content, cssClass = null) {
+  var classes = cssClass === null
+    ? 'nav-heading'
+    : `nav-heading ${cssClass}`
   return [
-    '<li class="nav-heading">',
+    `<li class="${classes}">`,
     content,
     '</li>'
   ].join('')

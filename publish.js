@@ -354,9 +354,6 @@ function buildNav(members) {
   var seen = {}
   var seenTutorials = {}
 
-  // MAICTODO: move to separate homenav item
-  nav.push(buildNavLink('home', '<a href="index.html">Home</a>'))
-
   nav = nav.concat(buildMemberNav(members.tutorials, "Tutorials", seenTutorials, linktoTutorial))
   nav = nav.concat(buildMemberNav(members.classes, "Classes", seen, linkto))
   nav = nav.concat(buildMemberNav(members.modules, "Modules", {}, linkto))
@@ -530,6 +527,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
+  conf.minami = conf.minami || {}
 
   var templatePath = path.normalize(opts.template)
   view = new template.Template(path.join(templatePath, "tmpl"))
@@ -719,7 +717,9 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.htmlsafe = htmlsafe
   view.outputSourceFiles = outputSourceFiles
 
-  // once for all
+  // shared by all
+  var homeLabel = conf.minami.homeLabel ?? 'Home'
+  view.homeNav = buildNavLink('home', `<a href="index.html">${homeLabel}</a>`)
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)
 

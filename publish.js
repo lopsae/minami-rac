@@ -394,9 +394,11 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
   if (items && items.length) {
     var itemsNav = ""
 
-    nav.push(buildNavHeading(itemHeading, 'type-container'))
+    if (itemHeading !== null) {
+      nav.push(buildNavHeading(itemHeading, 'type-container'))
+    }
 
-    items.forEach(function(item) {
+    items.forEach(function(item, index) {
       var methods = find({ kind: "function", memberof: item.longname })
       var members = find({ kind: "member", memberof: item.longname })
       var displayName
@@ -426,11 +428,14 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
         if (itemHeading === 'Tutorials') {
           nav.push(buildNavItem(linktoFn(item.longname, displayName)))
         } else {
-          if (showsAnyMembers) {
-            nav.push(buildNavHeading(buildNavType(item.kind, linktoFn(item.longname, displayName))))
+          var content = buildNavType(item.kind, linktoFn(item.longname, displayName))
+          if (index == 0 && itemHeading === null) {
+            // First element is made a heading
+            nav.push(buildNavHeading(content, 'type-container'))
+          } else if (showsAnyMembers) {
+            nav.push(buildNavHeading(content))
           } else {
             // No members
-            var content = buildNavType(item.kind, linktoFn(item.longname, displayName))
             nav.push(buildNavHeading(content, 'no-members'))
           }
 
@@ -773,7 +778,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Module",
         myModules[0].name,
-        null,
+        buildMemberNav(myModules, null, true, {}, linkto).join(''),
         myModules,
         helper.longnameToUrl[longname]
       )
@@ -781,13 +786,10 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var myClasses = helper.find(classes, { longname: longname })
     if (myClasses.length) {
-      // MAIC
-
       generate(
         "Class",
         myClasses[0].name,
-
-        buildMemberNav(myClasses, "Class", true, {}, linkto).join(''),
+        buildMemberNav(myClasses, null, true, {}, linkto).join(''),
         myClasses,
         helper.longnameToUrl[longname]
       )
@@ -798,7 +800,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Namespace",
         myNamespaces[0].name,
-        null,
+        buildMemberNav(myNamespaces, null, true, {}, linkto).join(''),
         myNamespaces,
         helper.longnameToUrl[longname]
       )
@@ -809,7 +811,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Mixin",
         myMixins[0].name,
-        null,
+        buildMemberNav(myMixins, null, true, {}, linkto).join(''),
         myMixins,
         helper.longnameToUrl[longname]
       )
@@ -820,7 +822,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "External",
         myExternals[0].name,
-        null,
+        buildMemberNav(myExternals, null, true, {}, linkto).join(''),
         myExternals,
         helper.longnameToUrl[longname]
       )
@@ -831,7 +833,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Interface",
         myInterfaces[0].name,
-        null,
+        buildMemberNav(myInterfaces, null, true, {}, linkto).join(''),
         myInterfaces,
         helper.longnameToUrl[longname]
       )

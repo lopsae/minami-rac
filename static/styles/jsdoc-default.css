@@ -265,6 +265,12 @@ nav li {
   display: inline-block;
 }
 
+.nav-heading.type-container a {
+  color: #4d4e53;
+  font-size: 18px;
+  display: inline-block;
+}
+
 .nav-item-type {
   /* margin-left: 5px; */
   width: 18px;

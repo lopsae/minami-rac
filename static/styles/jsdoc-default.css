@@ -299,6 +299,11 @@ nav li {
   color: #388E3C;
 }
 
+.type-namespace {
+  background: #dddddd;
+  color: #4d4e53;
+}
+
 .type-module {
   background: #E1BEE7;
   color: #7B1FA2;

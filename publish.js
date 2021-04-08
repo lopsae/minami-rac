@@ -245,13 +245,13 @@ function getPathFromDoclet(doclet) {
     : doclet.meta.filename
 }
 
-function generate(type, title, docs, filename, resolveLinks) {
+function generate(type, title, selfNav, docs, filename, resolveLinks) {
   resolveLinks = resolveLinks === false ? false : true
 
   var docData = {
-    // MAICTODO: can we add here the custom nav?
     type: type,
     title: title,
+    selfNav: selfNav,
     docs: docs
   }
 
@@ -287,6 +287,7 @@ function generateSourceFiles(sourceFiles, encoding) {
     generate(
       "Source",
       sourceFiles[file].shortened,
+      null,
       [source],
       sourceOutfile,
       false
@@ -354,14 +355,14 @@ function buildNav(members) {
   var seen = {}
   var seenTutorials = {}
 
-  nav = nav.concat(buildMemberNav(members.tutorials, "Tutorials", seenTutorials, linktoTutorial))
-  nav = nav.concat(buildMemberNav(members.classes, "Classes", seen, linkto))
-  nav = nav.concat(buildMemberNav(members.modules, "Modules", {}, linkto))
-  nav = nav.concat(buildMemberNav(members.externals, "Externals", seen, linktoExternal))
-  nav = nav.concat(buildMemberNav(members.events, "Events", seen, linkto))
-  nav = nav.concat(buildMemberNav(members.namespaces, "Namespaces", seen, linkto))
-  nav = nav.concat(buildMemberNav(members.mixins, "Mixins", seen, linkto))
-  nav = nav.concat(buildMemberNav(members.interfaces, "Interfaces", seen, linkto))
+  nav = nav.concat(buildMemberNav(members.tutorials, "Tutorials", false, seenTutorials, linktoTutorial))
+  nav = nav.concat(buildMemberNav(members.classes, "Classes", false, seen, linkto))
+  nav = nav.concat(buildMemberNav(members.modules, "Modules", false, {}, linkto))
+  nav = nav.concat(buildMemberNav(members.externals, "Externals", false, seen, linktoExternal))
+  nav = nav.concat(buildMemberNav(members.events, "Events", false, seen, linkto))
+  nav = nav.concat(buildMemberNav(members.namespaces, "Namespaces", false, seen, linkto))
+  nav = nav.concat(buildMemberNav(members.mixins, "Mixins", false, seen, linkto))
+  nav = nav.concat(buildMemberNav(members.interfaces, "Interfaces", false, seen, linkto))
 
   if (members.globals.length) {
     nav.push(buildNavHeading(linkto('global', 'Globals')))
@@ -378,11 +379,17 @@ function buildNav(members) {
   return nav.join('')
 }
 
-function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
+function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
   var nav = []
   var conf = env.conf.templates || {}
-
   conf.default = conf.default || {}
+
+  var showsMethodsInNav = conf.default.showMethodsInNav === true
+  var showsMembersInNav = conf.default.showMembersInNav === true
+  var showsAnyMembers = forceMembers === true
+    || showsMethodsInNav
+    || showsMembersInNav
+
 
   if (items && items.length) {
     var itemsNav = ""
@@ -419,17 +426,17 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
         if (itemHeading === 'Tutorials') {
           nav.push(buildNavItem(linktoFn(item.longname, displayName)))
         } else {
-          if (conf.default.showMethodsInNav == false && conf.default.showMembersInNav === false) {
+          if (showsAnyMembers) {
+            nav.push(buildNavHeading(buildNavType(item.kind, linktoFn(item.longname, displayName))))
+          } else {
             // No members
             var content = buildNavType(item.kind, linktoFn(item.longname, displayName))
             nav.push(buildNavHeading(content, 'no-members'))
-          } else {
-            nav.push(buildNavHeading(buildNavType(item.kind, linktoFn(item.longname, displayName))))
           }
 
         }
 
-        if (methods.length && conf.default.showMethodsInNav !== false) {
+        if (methods.length && (forceMembers || showsMethodsInNav)) {
           methods.forEach(function(method) {
             if (method.inherited && conf.default.showInheritedInNav === false) {
               return
@@ -729,7 +736,7 @@ exports.publish = function(taffyData, opts, tutorials) {
   }
 
   if (members.globals.length) {
-    generate("", "Global", [{ kind: "globalobj" }], globalUrl)
+    generate("", "Global", null, [{ kind: "globalobj" }], globalUrl)
   }
 
   // index page displays information from package.json and lists files
@@ -739,6 +746,7 @@ exports.publish = function(taffyData, opts, tutorials) {
   generate(
     "",
     "Home",
+    null,
     packages
       .concat([
         {
@@ -759,15 +767,13 @@ exports.publish = function(taffyData, opts, tutorials) {
   var externals = taffy(members.externals)
   var interfaces = taffy(members.interfaces)
 
-  // MAICTODO: for each of the above, attach a page nav
-  // view.pageNav[longname] = buildNav(each class...)
-
   Object.keys(helper.longnameToUrl).forEach(function(longname) {
     var myModules = helper.find(modules, { longname: longname })
     if (myModules.length) {
       generate(
         "Module",
         myModules[0].name,
+        null,
         myModules,
         helper.longnameToUrl[longname]
       )
@@ -775,9 +781,13 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var myClasses = helper.find(classes, { longname: longname })
     if (myClasses.length) {
+      // MAIC
+
       generate(
         "Class",
         myClasses[0].name,
+
+        buildMemberNav(myClasses, "Class", true, {}, linkto).join(''),
         myClasses,
         helper.longnameToUrl[longname]
       )
@@ -788,6 +798,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Namespace",
         myNamespaces[0].name,
+        null,
         myNamespaces,
         helper.longnameToUrl[longname]
       )
@@ -798,6 +809,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Mixin",
         myMixins[0].name,
+        null,
         myMixins,
         helper.longnameToUrl[longname]
       )
@@ -808,6 +820,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "External",
         myExternals[0].name,
+        null,
         myExternals,
         helper.longnameToUrl[longname]
       )
@@ -818,6 +831,7 @@ exports.publish = function(taffyData, opts, tutorials) {
       generate(
         "Interface",
         myInterfaces[0].name,
+        null,
         myInterfaces,
         helper.longnameToUrl[longname]
       )

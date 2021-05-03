@@ -359,6 +359,26 @@ footer {
   font-family: Consolas, Monaco, 'Andale Mono', monospace
 }
 
+.name.method-name {
+  background: #B3E5FC;
+  /*color: #0288D1;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 5px;
+}
+
+.name.member-name {
+  background: #C8E6C9;
+  /*color: #388E3C;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 5px;
+}
+
 .details {
   margin-top: 14px;
   border-left: 2px solid #DDD;

@@ -5,11 +5,15 @@ var self = this;
 <div class="section-members">
 <h4 class="name member-name" id="<?js= id ?>"><?js= data.attribs + name + (data.signature ? data.signature : '') ?></h4>
 
+<div class="details-mini">
+<span><?js= self.linkto(data.longname, '#', 'maic') ?></span>
 <?js if (data.meta && self.outputSourceFiles) {?>
-    <div class="source-mini"><span>source:
+    <span> | source:
     <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
-    </span></div>
+    </span>
 <?js } ?>
+</div>
+
 
 <?js if (data.summary) { ?>
 <p class="summary"><?js= summary ?></p>

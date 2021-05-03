@@ -798,7 +798,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     if (myClasses.length) {
       generate(
         "Class",
-        myClasses[0].name,
+        myClasses[0].longname,
         buildMemberNav(myClasses, null, true, {}, linkto).join(''),
         myClasses,
         helper.longnameToUrl[longname]
@@ -809,7 +809,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     if (myNamespaces.length) {
       generate(
         "Namespace",
-        myNamespaces[0].name,
+        myNamespaces[0].longname,
         buildMemberNav(myNamespaces, null, true, {}, linkto).join(''),
         myNamespaces,
         helper.longnameToUrl[longname]

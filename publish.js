@@ -441,6 +441,16 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
 
         }
 
+        if (members.length && (forceMembers || showsMembersInNav)) {
+          members.forEach(function(member) {
+            if (member.inherited && conf.default.showInheritedInNav === false) {
+              return
+            }
+
+            nav.push(buildNavItem(buildNavType(member.kind, linkto(member.longname, member.name))))
+          })
+        }
+
         if (methods.length && (forceMembers || showsMethodsInNav)) {
           methods.forEach(function(method) {
             if (method.inherited && conf.default.showInheritedInNav === false) {

@@ -63,6 +63,10 @@ h2 {
   font-weight: bold;
 }
 
+h2.longname {
+  display: flex;
+}
+
 h3 {
   /* margin-top: 1em; */
   /* margin-bottom: 16px; */

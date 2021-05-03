@@ -5,6 +5,12 @@ var self = this;
 <div class="section-members">
 <h4 class="name" id="<?js= id ?>"><?js= data.attribs + name + (data.signature ? data.signature : '') ?></h4>
 
+<?js if (data.meta && self.outputSourceFiles) {?>
+    <div class="source-mini"><span>source:
+    <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
+    </span></div>
+<?js } ?>
+
 <?js if (data.summary) { ?>
 <p class="summary"><?js= summary ?></p>
 <?js } ?>

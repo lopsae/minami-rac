@@ -99,6 +99,26 @@ h6 {
   font-style: italic;
 }
 
+.members-subsection {
+  background: hsl(122deg 30% 65%);
+  padding: 6px;
+  /*padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;*/
+  border-radius: 5px;
+}
+
+.methods-subsection {
+  background: hsl(199deg 80% 65%);
+  padding: 6px;
+  /*padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;*/
+  border-radius: 5px;
+}
+
 tt, code, kbd, samp {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   background: #f4f4f4;
@@ -359,8 +379,13 @@ footer {
   font-family: Consolas, Monaco, 'Andale Mono', monospace
 }
 
+.name .type-signature {
+  color: hsl(0deg 1% 55%);
+}
+
 .name.method-name {
   background: #B3E5FC;
+  color: hsl(230deg 5% 25%);
   /*color: #0288D1;*/
   padding-top: 5px;
   padding-bottom: 5px;
@@ -371,6 +396,7 @@ footer {
 
 .name.member-name {
   background: #C8E6C9;
+  color: hsl(230deg 5% 25%);
   /*color: #388E3C;*/
   padding-top: 5px;
   padding-bottom: 5px;

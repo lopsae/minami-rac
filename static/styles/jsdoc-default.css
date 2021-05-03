@@ -467,7 +467,7 @@ footer {
   overflow: auto;
 }
 
-.prettyprint.source, .prettyprint.source-file {
+.prettyprint.source {
   width: inherit;
 }
 
@@ -475,12 +475,12 @@ footer {
   font-size: 14px;
   line-height: 18px;
   display: block;
-  background-color: #f4f4f4;
+  background-color: #fff;
   color: #4D4E53;
 }
 
-.prettyprint.source-file code {
-  background-color: #fff;
+.description .prettyprint code {
+  background-color: #f4f4f4;
 }
 
 .prettyprint code:empty:before {
@@ -520,7 +520,7 @@ footer {
 }
 
 .prettyprint.linenums li.selected, .prettyprint.linenums li.selected * {
-   background-color: lightyellow
+   background-color: hsl(36deg 85% 70%)
 }
 
 .prettyprint.linenums li * {

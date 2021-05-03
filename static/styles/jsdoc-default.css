@@ -379,7 +379,7 @@ footer {
   font-family: Consolas, Monaco, 'Andale Mono', monospace
 }
 
-.name .type-signature {
+.name .type-signature, .name .signature-attributes {
   color: hsl(0deg 1% 55%);
 }
 

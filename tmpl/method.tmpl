@@ -110,7 +110,8 @@ var self = this;
 </div>
 <?js } ?>
 
-<?js if (data.returns && returns.length) { ?>
+<?js let hasReturnDesc = data.returns && returns.some(r => r.description) ?>
+<?js if (data.returns && (returns.length > 1 || hasReturnDesc)) { ?>
 <div class="section-returns">
 <h5>Returns:</h5>
 <?js if (returns.length > 1) { ?><ul><?js

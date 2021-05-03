@@ -122,6 +122,10 @@ blockquote {
   margin-top: 1em;
 }
 
+.class-description code {
+  font-size: 18px;
+}
+
 .class-description:empty {
   margin: 0
 }
@@ -417,16 +421,20 @@ footer {
   overflow: auto;
 }
 
-.prettyprint.source {
-  width: inherit
+.prettyprint.source, .prettyprint.source-file {
+  width: inherit;
 }
 
 .prettyprint code {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   display: block;
-  background-color: #fff;
+  background-color: #f4f4f4;
   color: #4D4E53;
+}
+
+.prettyprint.source-file code {
+  background-color: #fff;
 }
 
 .prettyprint code:empty:before {

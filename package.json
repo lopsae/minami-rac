@@ -1,7 +1,7 @@
 {
   "name": "minami-rac",
   "version": "1.3.1-dev",
-  "description": "Clean and minimal JSDoc 3 Template / Theme",
+  "description": "Customized Minami template for RAC",
   "main": "publish.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,15 +10,12 @@
     "type": "git",
     "url": "https://github.com/lopsae/minami-rac.git"
   },
-  "author": "Nijiko Yonskai <nijikokun@gmail.com>",
+  "author": "Maic Lopez Saenz <maic@lopsae.com>",
   "licenses": [
     {
       "type": "Apache-2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
   ],
-  "bugs": {
-    "url": "https://github.com/Nijikokun/minami/issues"
-  },
-  "homepage": "https://github.com/Nijikokun/minami"
+  "homepage": "https://github.com/lopsae/minami-rac"
 }

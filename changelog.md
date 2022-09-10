@@ -5,6 +5,7 @@ Changelog
 1.4.0-dev - IN PROGRESS
 -----------------------
 + Modify template property `minami.homeLabel`, splitting into `minami.homeNavItem` and `minami.versionNavItem`
++ Modify `showInheritedInNav`, `showMethodsInNav`, `showMembersInNav`; now read from `templates.minami`
 + Improve style of `nav-home-link` and `nav-version`
 + Change License to the MIT License
 

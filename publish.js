@@ -385,13 +385,14 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
   var nav = []
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
+  conf.minami = conf.minami || {}
 
-  // MAIC-TODO: move to minami config
-  var showsMethodsInNav = conf.default.showMethodsInNav === true
-  var showsMembersInNav = conf.default.showMembersInNav === true
+  var showInheritedInNav = conf.minami.showInheritedInNav === true
+  var showMethodsInNav = conf.minami.showMethodsInNav === true
+  var showMembersInNav = conf.minami.showMembersInNav === true
   var showsAnyMembers = forceMembers === true
-    || showsMethodsInNav
-    || showsMembersInNav
+    || showMethodsInNav
+    || showMembersInNav
 
 
   if (items && items.length) {
@@ -444,10 +445,9 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
 
         }
 
-        if (members.length && (forceMembers || showsMembersInNav)) {
+        if (members.length && (forceMembers || showMembersInNav)) {
           members.forEach(function(member) {
-            // MAIC-TODO: move to minami, set along with other shows
-            if (member.inherited && conf.default.showInheritedInNav === false) {
+            if (member.inherited && !showInheritedInNav) {
               return
             }
 
@@ -455,9 +455,9 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
           })
         }
 
-        if (methods.length && (forceMembers || showsMethodsInNav)) {
+        if (methods.length && (forceMembers || showMethodsInNav)) {
           methods.forEach(function(method) {
-            if (method.inherited && conf.default.showInheritedInNav === false) {
+            if (method.inherited && !showInheritedInNav) {
               return
             }
 
@@ -565,7 +565,6 @@ exports.publish = function(taffyData, opts, tutorials) {
 
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
-  // MAIC-TODO: here is how minami conf is loaded
   conf.minami = conf.minami || {}
 
   var templatePath = path.normalize(opts.template)

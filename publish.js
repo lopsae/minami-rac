@@ -1,6 +1,8 @@
 /*global env: true */
 "use strict"
 
+// MAIC-TODO: see if code in member description can be made smaller
+
 var doop = require("jsdoc/util/doop")
 var fs = require("jsdoc/fs")
 var helper = require("jsdoc/util/templateHelper")
@@ -480,17 +482,29 @@ function linktoExternal(longName, name) {
 }
 
 /**
- * Helper to generate navigation list link wrapper around navigation links for
- * locations.
+ * Helper to generate the home link item for the navigation sidebar.
  *
- * @param {String} linkClass navigation link classname
- * @param {String} linkContent navigation link HTML content
+ * @param {String} content navigation home HTML content
  * @return {String}
  */
-function buildNavLink (linkClass, linkContent) {
+function buildNavHomeLink (content) {
   return [
-    '<li class="nav-link nav-' + linkClass + '-link">',
-    linkContent,
+    '<li class="nav-home-link">',
+    `<a href="index.html">${content}</a>`,
+    '</li>'
+  ].join('')
+}
+
+/**
+ * Helper to generate the version item for the navigation sidebar.
+ *
+ * @param {String} content navigation version HTML content
+ * @return {String}
+ */
+function buildNavVersion(content) {
+  return [
+    '<li class="nav-version">',
+    `<code>${content}</code>`,
     '</li>'
   ].join('')
 }
@@ -743,9 +757,12 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.outputSourceFiles = outputSourceFiles
 
   // shared by all
-  var homeLabel = conf.minami.homeLabel ?? 'Home'
-  // MAIC-TODO: update homelabel, add homeSubLabel
-  view.homeNav = buildNavLink('home', `<a href="index.html">${homeLabel}</a>`)
+  var homeNavItem = conf.minami.homeNavItem ?? 'Home'
+  view.homeNavItem = buildNavHomeLink(homeNavItem)
+  if (conf.minami.versionNavItem) {
+    view.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
+  }
+  view.versionNavItem
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)
 

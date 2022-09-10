@@ -51,6 +51,9 @@ In your projects `package.json` file add a generate script:
 }
 ```
 
++ `minami.showInheritedInNav` - When set to `true` lists the inherited methods and members in the navigation sidebar of the pages of classes and namespaces; otherwise these elements are hidden
++ `minami.showMethodsInNav` - When set to `true` lists the methods of classes and namespaces in the navigation sidebar of all pages; otherwise these elements are hidden
++ `minami.showMembersInNav` - When set to `true` lists the members of classes and namespaces in the navigation sidebar of all pages; otherwise these elements are hidden
 + `default.useLongnameInNav` - Using an integer will display at most that amount of path elements in the navigation sidebar, any omited path is replaced with ellipsis; `true` displays the full longname, `false` is equivalent to `0` which displays only the last element without any ellipsis
 
 

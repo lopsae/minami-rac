@@ -383,12 +383,14 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
   var nav = []
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
+  conf.minami = conf.minami || {}
 
-  var showsMethodsInNav = conf.default.showMethodsInNav === true
-  var showsMembersInNav = conf.default.showMembersInNav === true
+  var showInheritedInNav = conf.minami.showInheritedInNav === true
+  var showMethodsInNav = conf.minami.showMethodsInNav === true
+  var showMembersInNav = conf.minami.showMembersInNav === true
   var showsAnyMembers = forceMembers === true
-    || showsMethodsInNav
-    || showsMembersInNav
+    || showMethodsInNav
+    || showMembersInNav
 
 
   if (items && items.length) {
@@ -441,9 +443,9 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
 
         }
 
-        if (members.length && (forceMembers || showsMembersInNav)) {
+        if (members.length && (forceMembers || showMembersInNav)) {
           members.forEach(function(member) {
-            if (member.inherited && conf.default.showInheritedInNav === false) {
+            if (member.inherited && !showInheritedInNav) {
               return
             }
 
@@ -451,9 +453,9 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
           })
         }
 
-        if (methods.length && (forceMembers || showsMethodsInNav)) {
+        if (methods.length && (forceMembers || showMethodsInNav)) {
           methods.forEach(function(method) {
-            if (method.inherited && conf.default.showInheritedInNav === false) {
+            if (method.inherited && !showInheritedInNav) {
               return
             }
 
@@ -478,17 +480,29 @@ function linktoExternal(longName, name) {
 }
 
 /**
- * Helper to generate navigation list link wrapper around navigation links for
- * locations.
+ * Helper to generate the home link item for the navigation sidebar.
  *
- * @param {String} linkClass navigation link classname
- * @param {String} linkContent navigation link HTML content
+ * @param {String} content navigation home HTML content
  * @return {String}
  */
-function buildNavLink (linkClass, linkContent) {
+function buildNavHomeLink (content) {
   return [
-    '<li class="nav-link nav-' + linkClass + '-link">',
-    linkContent,
+    '<li class="nav-home-link">',
+    `<a href="index.html">${content}</a>`,
+    '</li>'
+  ].join('')
+}
+
+/**
+ * Helper to generate the version item for the navigation sidebar.
+ *
+ * @param {String} content navigation version HTML content
+ * @return {String}
+ */
+function buildNavVersion(content) {
+  return [
+    '<li class="nav-version">',
+    `<code>${content}</code>`,
     '</li>'
   ].join('')
 }
@@ -740,8 +754,12 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.outputSourceFiles = outputSourceFiles
 
   // shared by all
-  var homeLabel = conf.minami.homeLabel ?? 'Home'
-  view.homeNav = buildNavLink('home', `<a href="index.html">${homeLabel}</a>`)
+  var homeNavItem = conf.minami.homeNavItem ?? 'Home'
+  view.homeNavItem = buildNavHomeLink(homeNavItem)
+  if (conf.minami.versionNavItem) {
+    view.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
+  }
+  view.versionNavItem
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)
 

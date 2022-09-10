@@ -1,6 +1,6 @@
 # Minami-rac
 
-A customized [Minami](https://github.com/Nijikokun/minami) template for [RAC](https://github.com/lopsae/rac).
+A customized [Minami](https://github.com/Nijikokun/minami) template for [RAC — Ruler and Compass](https://github.com/lopsae/rac).
 
 
 ## Install
@@ -38,6 +38,8 @@ In your `.jsdoc.json` file, add a template option.
 ```
 
 
-## License
+### License
 
-Licensed under the Apache2 license.
+Minami-RAC is licensed under the [MIT License](https://github.com/lopsae/minami-rac/blob/master/LICENSE).
+
+Minami and JSDoc 3 are licensed under the [Apache2 license](https://github.com/lopsae/minami-rac/blob/master/LICENSE).

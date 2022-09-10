@@ -11,11 +11,6 @@
     "url": "https://github.com/lopsae/minami-rac.git"
   },
   "author": "Maic Lopez Saenz <maic@lopsae.com>",
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
-  ],
+  "license": "MIT",
   "homepage": "https://github.com/lopsae/minami-rac"
 }

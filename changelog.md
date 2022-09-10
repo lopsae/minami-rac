@@ -6,6 +6,7 @@ Changelog
 -----------------------
 + Modify template property `minami.homeLabel`, splitting into `minami.homeNavItem` and `minami.versionNavItem`
 + Improve style of `nav-home-link` and `nav-version`
++ Change License to the MIT License
 
 
 1.3.1-dev - 2021 May 8th

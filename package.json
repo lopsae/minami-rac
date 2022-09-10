@@ -1,6 +1,6 @@
 {
   "name": "minami-rac",
-  "version": "1.4.0-dev",
+  "version": "1.4.0",
   "description": "Customized Minami template for RAC",
   "main": "publish.js",
   "scripts": {

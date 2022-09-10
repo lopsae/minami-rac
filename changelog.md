@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-1.4.0-dev - IN PROGRESS
------------------------
+1.4.0 - 2022 - September 10th
+-----------------------------
+Style corrections and new template options
 + Modify template property `minami.homeLabel`, splitting into `minami.homeNavItem` and `minami.versionNavItem`
 + Modify `showInheritedInNav`, `showMethodsInNav`, `showMembersInNav`; now read from `templates.minami`
 + Improve style of `nav-home-link` and `nav-version`

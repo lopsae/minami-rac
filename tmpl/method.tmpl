@@ -15,7 +15,7 @@ var self = this;
 
 
     <div class="details-mini">
-    <span><?js= self.linkto(data.longname, '#', 'maic') ?></span>
+    <span><?js= self.linkto(data.longname, '#') ?></span>
     <?js if (data.meta && self.outputSourceFiles) {?>
         <span> | source:
         <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>

@@ -7,6 +7,7 @@ Changelog
 + Modify template property `minami.homeLabel`, splitting into `minami.homeNavItem` and `minami.versionNavItem`
 + Modify `showInheritedInNav`, `showMethodsInNav`, `showMembersInNav`; now read from `templates.minami`
 + Improve style of `nav-home-link` and `nav-version`
++ Improve style of `code` tags inside descriptions
 + Change License to the MIT License
 
 

@@ -1,8 +1,6 @@
 /*global env: true */
 "use strict"
 
-// MAIC-TODO: see if code in member description can be made smaller
-
 var doop = require("jsdoc/util/doop")
 var fs = require("jsdoc/fs")
 var helper = require("jsdoc/util/templateHelper")

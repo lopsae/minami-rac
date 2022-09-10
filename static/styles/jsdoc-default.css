@@ -557,6 +557,10 @@ footer {
    font-size: 100%;
 }
 
+.params td.description code, .props td.description code {
+  font-size: 90%;
+}
+
 .params td, .params th, .props td, .props th {
    margin: 0px;
    text-align: left;
@@ -565,7 +569,7 @@ footer {
    display: table-cell;
 }
 
-.params td {
+.params td, .props td{
    border-top: 1px solid #eee
 }
 

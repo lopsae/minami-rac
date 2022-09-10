@@ -384,6 +384,7 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
 
+  // MAIC-TODO: move to minami config
   var showsMethodsInNav = conf.default.showMethodsInNav === true
   var showsMembersInNav = conf.default.showMembersInNav === true
   var showsAnyMembers = forceMembers === true
@@ -443,6 +444,7 @@ function buildMemberNav(items, itemHeading, forceMembers, itemsSeen, linktoFn) {
 
         if (members.length && (forceMembers || showsMembersInNav)) {
           members.forEach(function(member) {
+            // MAIC-TODO: move to minami, set along with other shows
             if (member.inherited && conf.default.showInheritedInNav === false) {
               return
             }
@@ -549,6 +551,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
   var conf = env.conf.templates || {}
   conf.default = conf.default || {}
+  // MAIC-TODO: here is how minami conf is loaded
   conf.minami = conf.minami || {}
 
   var templatePath = path.normalize(opts.template)
@@ -741,6 +744,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
   // shared by all
   var homeLabel = conf.minami.homeLabel ?? 'Home'
+  // MAIC-TODO: update homelabel, add homeSubLabel
   view.homeNav = buildNavLink('home', `<a href="index.html">${homeLabel}</a>`)
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)

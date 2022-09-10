@@ -1,25 +1,24 @@
-# Minami-rac
+# Minami-RAC
 
 A customized [Minami](https://github.com/Nijikokun/minami) template for [RAC — Ruler and Compass](https://github.com/lopsae/rac).
 
 
 ## Install
 
+Install into `devDependencies`
 ```bash
+$ npm install --save-dev jsdoc
 $ npm install --save-dev minami-rac
 ```
 
 
-## Usage
-
-Clone repository to your designated `jsdoc` template directory, then:
-
-```bash
-$ jsdoc entry-file.js -t path/to/minami-rac
+In your `.jsdoc.json` file, add a template option.
+```json
+"opts": {
+  "template": "node_modules/minami-rac"
+}
 ```
 
-
-### Node.js Dependency
 
 In your projects `package.json` file add a generate script:
 
@@ -29,13 +28,30 @@ In your projects `package.json` file add a generate script:
 }
 ```
 
-In your `.jsdoc.json` file, add a template option.
+
+### Example `templates` JSDoc Configuration
 
 ```json
-"opts": {
-  "template": "node_modules/minami-rac"
+{
+  "templates": {
+    "minami" : {
+      "homeNavItem": "Minami-RAC",
+      "versionNavItem": "1.4.0",
+      "showInheritedInNav": false,
+      "showMethodsInNav": false,
+      "showMembersInNav": false
+    },
+    "default" : {
+      "cleverLinks": false,
+      "monospaceLinks": false,
+      "includeDate" : false,
+      "useLongnameInNav": 3,
+
+    }
 }
 ```
+
++ `default.useLongnameInNav` - Using an integer will display at most that amount of path elements in the navigation sidebar, any omited path is replaced with ellipsis; `true` displays the full longname, `false` is equivalent to `0` which displays only the last element without any ellipsis
 
 
 ### License

@@ -3,6 +3,8 @@ Changelog
 
 1.4.1-dev - IN PROGRESS
 -----------------------
++ Display theme version in footer
++ Template vars for all pages now stored in `layout`
 
 
 1.4.0 - 2022 - September 10th

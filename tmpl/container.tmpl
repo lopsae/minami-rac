@@ -64,6 +64,22 @@
 
         <?js= self.partial('method.tmpl', doc) ?>
 
+    <?js } else if (doc.kind === 'namespace') { ?>
+        <div class="header-details-mini">
+        <span><?js= self.linkto(doc.longname, '#') ?></span>
+        <?js if (doc.meta && self.outputSourceFiles) {?>
+            <span> | source:
+            <?js= self.linkto(doc.meta.shortpath) ?>, <?js= self.linkto(doc.meta.shortpath, 'line ' + doc.meta.lineno, null, 'line' + doc.meta.lineno) ?>
+            </span>
+        <?js } ?>
+        </div>
+
+        <?js if (doc.description) { ?>
+            <div class="class-description"><?js= doc.description ?></div>
+        <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
     <?js } else { ?>
         <?js if (doc.description) { ?>
             <div class="description"><?js= doc.description ?></div>

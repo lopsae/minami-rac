@@ -28,9 +28,6 @@
         <?js if (doc.variation) { ?>
             <sup class="variation"><?js= doc.variation ?></sup>
         <?js } ?></h2>
-        <?js if (doc.classdesc) { ?>
-            <div class="class-description"><?js= doc.classdesc ?></div>
-        <?js } ?>
     <?js } else if (doc.kind === 'module' && doc.modules) { ?>
         <?js doc.modules.forEach(function(module) { ?>
             <?js if (module.classdesc) { ?>
@@ -50,8 +47,23 @@
         <?js doc.modules.forEach(function(module) { ?>
             <?js= self.partial('method.tmpl', module) ?>
         <?js }) ?>
+
     <?js } else if (doc.kind === 'class') { ?>
+        <div class="header-details-mini">
+        <span><?js= self.linkto(doc.longname, '#') ?></span>
+        <?js if (doc.meta && self.outputSourceFiles) {?>
+            <span> | source:
+            <?js= self.linkto(doc.meta.shortpath) ?>, <?js= self.linkto(doc.meta.shortpath, 'line ' + doc.meta.lineno, null, 'line' + doc.meta.lineno) ?>
+            </span>
+        <?js } ?>
+        </div>
+
+        <?js if (doc.classdesc) { ?>
+            <div class="class-description"><?js= doc.classdesc ?></div>
+        <?js } ?>
+
         <?js= self.partial('method.tmpl', doc) ?>
+
     <?js } else { ?>
         <?js if (doc.description) { ?>
             <div class="description"><?js= doc.description ?></div>

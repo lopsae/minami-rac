@@ -759,17 +759,16 @@ exports.publish = function(taffyData, opts, tutorials) {
   const minamiPackageJson = JSON.parse(fs.readFileSync(minamiPackageJsonPath, 'utf8'))
   const minamiVersion = minamiPackageJson.version
 
-  // shared by all
-  // MAICTODO: move to a separate variable to isolate
+  // shared by all pages
+  var homeNavItemContent = conf.minami.homeNavItem ?? 'Home'
   view.layoutData = {
-    minamiVersion: minamiVersion
+    minamiVersion: minamiVersion,
+    homeNavItem: buildNavHomeLink(homeNavItemContent)
   }
-  var homeNavItem = conf.minami.homeNavItem ?? 'Home'
-  view.homeNavItem = buildNavHomeLink(homeNavItem)
   if (conf.minami.versionNavItem) {
-    view.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
+    view.layoutData.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
   }
-  view.versionNavItem
+
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)
 

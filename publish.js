@@ -768,6 +768,9 @@ exports.publish = function(taffyData, opts, tutorials) {
   if (conf.minami.versionNavItem) {
     view.layoutData.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
   }
+  if (conf.default.includeDate !== false) {
+    view.layoutData.buildDate = new Date()
+  }
 
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)

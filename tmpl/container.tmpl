@@ -62,6 +62,11 @@
             <div class="class-description"><?js= doc.classdesc ?></div>
         <?js } ?>
 
+        <?js
+        // Constructor information is present in the doc object for the class
+        // so method is producing here the constructor documentation
+        // Unclear what happens with the actual constructor docklet
+        ?>
         <?js= self.partial('method.tmpl', doc) ?>
 
     <?js } else if (doc.kind === 'namespace') { ?>

@@ -1,14 +1,8 @@
 <?js
 var data = obj;
 var self = this;
-var defaultObjectClass = '';
-
-// Check if the default value is an object or array; if so, apply code highlighting
-if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvaluetype === 'array')) {
-    data.defaultvalue = "<pre class=\"prettyprint\"><code>" + data.defaultvalue + "</code></pre>";
-    defaultObjectClass = ' class="object-value"';
-}
 ?>
+
 <?js
     var properties = data.properties;
     if (properties && properties.length && properties.forEach) {
@@ -102,9 +96,9 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
 
     <?js if (data.defaultvalue) {?>
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li<?js= defaultObjectClass ?>><?js= data.defaultvalue ?></li>
-        </ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>
+        <code><?js= data.defaultvalue ?></code>
+    </li></ul></dd>
     <?js } ?>
 
     <?js if (data.tutorials && tutorials.length) {?>

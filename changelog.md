@@ -3,6 +3,7 @@ Changelog
 
 1.4.1-dev - IN PROGRESS
 -----------------------
++ Display default values as `code`
 + Display source at top of classes and namespaces
 + Display theme version in footer
 + Template vars for all pages now stored in `layout`

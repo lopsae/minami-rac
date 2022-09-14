@@ -502,6 +502,10 @@ footer {
   padding: 15px
 }
 
+pre.prettyprint.example {
+  margin-top: 0.5em;
+}
+
 pre.prettyprint.linenums {
   margin-top: 2em;
 }

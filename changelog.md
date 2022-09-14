@@ -6,6 +6,7 @@ Changelog
 + Display default values as `code` in members, parameters, and properties
 + Display source at top of classes and namespaces
 + Display theme version in footer
++ Improve `@example` style
 + Template vars for all pages now stored in `layout`
 
 

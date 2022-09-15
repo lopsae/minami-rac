@@ -121,8 +121,8 @@ h6 {
 
 tt, code, kbd, samp {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
-  background: #f4f4f4;
-  padding: 1px 5px;
+  background: #eaeaea;
+  padding: 3px 5px 1px;
   border-radius: 5px;
 }
 
@@ -392,10 +392,7 @@ footer {
   background: #B3E5FC;
   color: hsl(230deg 5% 25%);
   /*color: #0288D1;*/
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 6px 6px 3px;
   border-radius: 5px;
 }
 
@@ -403,10 +400,7 @@ footer {
   background: #C8E6C9;
   color: hsl(230deg 5% 25%);
   /*color: #388E3C;*/
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 6px 6px 3px;
   border-radius: 5px;
 }
 
@@ -512,7 +506,7 @@ pre.prettyprint.linenums li.L3,
 pre.prettyprint.linenums li.L5,
 pre.prettyprint.linenums li.L7,
 pre.prettyprint.linenums li.L9 {
-  background-color: #e4e4e4;
+  background-color: #eaeaea;
 }
 
 pre.prettyprint.linenums code {
@@ -569,7 +563,6 @@ pre.prettyprint.linenums code {
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   width: 100%;
-  font-size: 14px;
   /* margin-left: 15px; */
 }
 
@@ -581,7 +574,6 @@ pre.prettyprint.linenums code {
 .params td.description code, .props td.description code,
 .params td.default code, .props td.default code,
 .params td.type code, .props td.type code {
-  font-size: 90%;
 }
 
 .params td, .params th, .props td, .props th {
@@ -590,6 +582,10 @@ pre.prettyprint.linenums code {
    vertical-align: top;
    padding: 10px;
    display: table-cell;
+}
+
+.params th, .props th {
+  font-size: 90%;
 }
 
 .params td.name, .params td.type, .params td.attributes, .params td.default,

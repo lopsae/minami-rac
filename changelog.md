@@ -3,10 +3,13 @@ Changelog
 
 1.4.1-dev - IN PROGRESS
 -----------------------
++ Overall style adjustments
 + Display default values as `code` in members, parameters, and properties
 + Display source at top of classes and namespaces
++ Display `@example` section in namespaces
 + Display theme version in footer
 + Improve `@example` style
++ Import Consolas for all displayed code
 + Template vars for all pages now stored in `layout`
 
 

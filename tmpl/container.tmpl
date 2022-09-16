@@ -83,6 +83,11 @@
             <div class="class-description"><?js= doc.description ?></div>
         <?js } ?>
 
+        <?js if (doc.examples && doc.examples.length) { ?>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
+            <?js= self.partial('examples.tmpl', doc.examples) ?>
+        <?js } ?>
+
         <?js= self.partial('details.tmpl', doc) ?>
 
     <?js } else { ?>
@@ -90,12 +95,13 @@
             <div class="description"><?js= doc.description ?></div>
         <?js } ?>
 
-        <?js= self.partial('details.tmpl', doc) ?>
-
         <?js if (doc.examples && doc.examples.length) { ?>
-            <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
             <?js= self.partial('examples.tmpl', doc.examples) ?>
         <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
     <?js } ?>
     </div>
 

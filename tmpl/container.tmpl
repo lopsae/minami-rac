@@ -49,6 +49,9 @@
         <?js }) ?>
 
     <?js } else if (doc.kind === 'class') { ?>
+        <?js
+        // Class Information
+        ?>
         <div class="header-details-mini">
         <span><?js= self.linkto(doc.longname, '#') ?></span>
         <?js if (doc.meta && self.outputSourceFiles) {?>
@@ -62,6 +65,13 @@
             <div class="class-description"><?js= doc.classdesc ?></div>
         <?js } ?>
 
+        <?js if (doc.examples && doc.examples.length) { ?>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
+            <?js= self.partial('examples.tmpl', doc.examples) ?>
+        <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
         <?js
         // Constructor information is present in the doc object for the class
         // so method is producing here the constructor documentation
@@ -70,6 +80,9 @@
         <?js= self.partial('method.tmpl', doc) ?>
 
     <?js } else if (doc.kind === 'namespace') { ?>
+        <?js
+        // Namespace Information
+        ?>
         <div class="header-details-mini">
         <span><?js= self.linkto(doc.longname, '#') ?></span>
         <?js if (doc.meta && self.outputSourceFiles) {?>

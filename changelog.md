@@ -8,6 +8,7 @@ Changelog
 + Display source at top of classes and namespaces
 + Display `@example` section in namespaces
 + Display theme version in footer
++ Display `@example`, and `@see` in class descriptions, this prevents the display of these tags in the constructor description
 + Improve `@example` style
 + Import Consolas for all displayed code
 + Template vars for all pages now stored in `layout`

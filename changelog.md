@@ -1,8 +1,9 @@
 Changelog
 =========
 
-1.4.1-dev - IN PROGRESS
------------------------
+1.4.1 - 2022 October 27th
+-------------------------
+Update of examples and code blocks
 + Overall style adjustments
 + Display default values as `code` in members, parameters, and properties
 + Display source at top of classes and namespaces
@@ -15,7 +16,7 @@ Changelog
 + Template vars for all pages now stored in `layout`
 
 
-1.4.0 - 2022 - September 10th
+1.4.0 - 2022 September 10th
 -----------------------------
 Style corrections and new template options
 + Modify template property `minami.homeLabel`, splitting into `minami.homeNavItem` and `minami.versionNavItem`

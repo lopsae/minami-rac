@@ -2,7 +2,8 @@ Changelog
 =========
 
 1.4.1 - 2022 October 27th
------------------------
+-------------------------
+Update of examples and code blocks
 + Overall style adjustments
 + Display default values as `code` in members, parameters, and properties
 + Display source at top of classes and namespaces

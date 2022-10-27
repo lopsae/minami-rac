@@ -36,7 +36,13 @@ var self = this;
 </div>
 <?js } ?>
 
-<?js= this.partial('details.tmpl', data) ?>
+<?js
+// Skip for constructors
+// details, like "See also", are shown only in class description
+?>
+<?js if (!(data.kind === 'class' && data.classdesc)) { ?>
+    <?js= this.partial('details.tmpl', data) ?>
+<?js } ?>
 
 <?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
     <h5>Extends:</h5>
@@ -151,10 +157,16 @@ var self = this;
 </div>
 <?js } ?>
 
-<?js if (data.examples && examples.length) { ?>
-<div class="section-examples">
-<h5>Example<?js= examples.length > 1? 's':'' ?></h5>
-<?js= this.partial('examples.tmpl', examples) ?>
-</div>
+<?js
+// Skip for constructors
+// examples are shown only in class description
+?>
+<?js if (!(data.kind === 'class' && data.classdesc)) { ?>
+    <?js if (data.examples && examples.length) { ?>
+    <div class="section-examples">
+    <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+    <?js= this.partial('examples.tmpl', examples) ?>
+    </div>
+    <?js } ?>
+    </div>
 <?js } ?>
-</div>

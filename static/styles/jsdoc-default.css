@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,500i,500,600,600i|Roboto);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,500i,500,600,600i|Consolas:300,400,400i,500i,500,600,600i);
 
 * {
   box-sizing: border-box
@@ -34,7 +34,7 @@ p, ul, ol, blockquote {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,21 +45,21 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: 300;
-  font-size: 48px;
+  font-size: 42px;
   margin: 1em 0 .5em;
 }
 
 h1.page-title {
   margin-bottom: 10px;
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 300;
   border-bottom: solid 2px #ddd;
   padding: .5em 0 .5em;
   margin-top: 0;}
 
 h2 {
-  font-size: 32px;
-  margin: 1.2em 0 .8em;
+  font-size: 34px;
+  margin: 1em 0 0em;
   font-weight: bold;
 }
 
@@ -121,10 +121,9 @@ h6 {
 
 tt, code, kbd, samp {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
-  background: #f4f4f4;
-  padding: 1px 5px;
+  background: #eaeaea;
+  padding: 3px 4px 1px;
   border-radius: 5px;
-  font-size: 14px;
 }
 
 blockquote {
@@ -136,14 +135,14 @@ blockquote {
 }
 
 .class-description {
-  font-size: 130%;
+  font-size: 110%;
   line-height: 140%;
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
-.class-description code {
-  font-size: 18px;
+.class-description pre.prettyprint code {
+  font-size: 16px;
 }
 
 .class-description:empty {
@@ -190,8 +189,8 @@ section {
 .readme h3,
 .readme h4,
 .readme h5 {
-  margin-top: 1em;
-  margin-bottom: 16px;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
   font-weight: bold;
   padding: 0;
 }
@@ -397,10 +396,7 @@ footer {
   background: #B3E5FC;
   color: hsl(230deg 5% 25%);
   /*color: #0288D1;*/
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 6px 6px 3px;
   border-radius: 5px;
 }
 
@@ -408,10 +404,7 @@ footer {
   background: #C8E6C9;
   color: hsl(230deg 5% 25%);
   /*color: #388E3C;*/
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 6px 6px 3px;
   border-radius: 5px;
 }
 
@@ -447,15 +440,20 @@ footer {
    margin: 0
 }
 
-.details .object-value {
-   padding-top: 0
-}
-
 .details-mini {
   padding-left: 8px;
   border-left: 2px solid #DDD;
-  font-size: 12px;
+  font-size: 14px;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+.header-details-mini {
+  color: #888;
+  padding-left: 8px;
+  border-left: 2px solid #DDD;
+  font-size: 14px;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  margin: 0.5em 0px 1em 0px;
 }
 
 .description {
@@ -470,9 +468,8 @@ footer {
 }
 
 .prettyprint {
-  font-size: 13px;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 7px;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.05);
   overflow: auto;
 }
@@ -482,14 +479,9 @@ footer {
 }
 
 .prettyprint code {
-  font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
   display: block;
-  background-color: #fff;
   color: #4D4E53;
-}
-
-.description .prettyprint code {
   background-color: #f4f4f4;
 }
 
@@ -501,8 +493,29 @@ footer {
   padding: 15px
 }
 
-.prettyprint .linenums code {
-  padding: 0 15px
+pre.prettyprint.example {
+  margin-top: 0.5em;
+}
+
+pre.prettyprint.linenums {
+  margin-top: 2em;
+  background-color: #f4f4f4;
+}
+
+pre.prettyprint.linenums li.L1,
+pre.prettyprint.linenums li.L3,
+pre.prettyprint.linenums li.L5,
+pre.prettyprint.linenums li.L7,
+pre.prettyprint.linenums li.L9 {
+  background-color: #eaeaea;
+}
+
+pre.prettyprint.linenums code {
+  font-size: 14px;
+  padding: 0 0 0 15px;
+  border-radius: 0;
+  background-color: transparent;
+  display: inline;
 }
 
 .prettyprint .linenums li:first-of-type code {
@@ -514,7 +527,7 @@ footer {
 }
 
 .prettyprint.linenums {
-  padding-left: 70px;
+  padding-left: 50px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -522,43 +535,45 @@ footer {
 }
 
 .prettyprint.linenums ol {
-   padding-left: 0
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 80%;
+  color: #aaa;
+  padding-left: 0;
 }
 
 .prettyprint.linenums li {
-   border-left: 3px #ddd solid
+  border-left: 3px #ddd solid;
+  line-height: 100%;
 }
 
 .prettyprint.linenums li.selected, .prettyprint.linenums li.selected * {
-   background-color: hsl(36deg 85% 70%)
+  background-color: hsl(36deg 85% 70%)
 }
 
 .prettyprint.linenums li * {
-   -webkit-user-select: text;
-   -moz-user-select: text;
-   -ms-user-select: text;
-   user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 .params, .props {
   border-spacing: 0;
   border: 1px solid #ddd;
-  border-collapse: collapse;
-  border-radius: 3px;
+  border-radius: 7px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   width: 100%;
-  font-size: 14px;
   /* margin-left: 15px; */
 }
 
 .params .name, .props .name, .name code {
-   color: #4D4E53;
-   font-family: Consolas, Monaco, 'Andale Mono', monospace;
-   font-size: 100%;
+  color: #4D4E53;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
 
-.params td.description code, .props td.description code {
-  font-size: 90%;
+.params td.description code, .props td.description code,
+.params td.default code, .props td.default code,
+.params td.type code, .props td.type code {
 }
 
 .params td, .params th, .props td, .props th {
@@ -569,13 +584,20 @@ footer {
    display: table-cell;
 }
 
-.params td, .props td{
-   border-top: 1px solid #eee
+.params th, .props th {
+  font-size: 90%;
+  font-weight: bold;
 }
 
-.params thead tr, .props thead tr {
-   background-color: #fff;
-   font-weight: bold;
+.params td.name, .params td.type, .params td.attributes, .params td.default,
+.props td.name, .props td.type, .props td.attributes, .props td.default {
+  /*To make this collumns to its smalles width*/
+  width:0.1%;
+  white-space: nowrap;
+}
+
+.params td, .props td{
+   border-top: 1px solid #eee
 }
 
 .params .params thead tr, .props .props thead tr {
@@ -745,6 +767,22 @@ dl.param-type {
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid #eee;
+}
+
+.tag-see p {
+  margin-top:    0.3em;
+  margin-bottom: 0.3em;
+}
+
+dt.tag-see {
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tag-see ul {
+  padding-inline-start: 10px;
+  list-style-type: circle;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 680px) {

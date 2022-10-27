@@ -252,7 +252,8 @@ function generate(type, title, selfNav, docs, filename, resolveLinks) {
     type: type,
     title: title,
     selfNav: selfNav,
-    docs: docs
+    docs: docs,
+    layout: view.layoutData
   }
 
   var outpath = path.join(outdir, filename),
@@ -753,13 +754,24 @@ exports.publish = function(taffyData, opts, tutorials) {
   view.htmlsafe = htmlsafe
   view.outputSourceFiles = outputSourceFiles
 
-  // shared by all
-  var homeNavItem = conf.minami.homeNavItem ?? 'Home'
-  view.homeNavItem = buildNavHomeLink(homeNavItem)
-  if (conf.minami.versionNavItem) {
-    view.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
+  // get minami version
+  const minamiPackageJsonPath = path.join(opts.template, 'package.json')
+  const minamiPackageJson = JSON.parse(fs.readFileSync(minamiPackageJsonPath, 'utf8'))
+  const minamiVersion = minamiPackageJson.version
+
+  // shared by all pages
+  var homeNavItemContent = conf.minami.homeNavItem ?? 'Home'
+  view.layoutData = {
+    minamiVersion: minamiVersion,
+    homeNavItem: buildNavHomeLink(homeNavItemContent)
   }
-  view.versionNavItem
+  if (conf.minami.versionNavItem) {
+    view.layoutData.versionNavItem = buildNavVersion(conf.minami.versionNavItem)
+  }
+  if (conf.default.includeDate !== false) {
+    view.layoutData.buildDate = new Date()
+  }
+
   view.nav = buildNav(members)
   attachModuleSymbols(find({ longname: { left: "module:" } }), members.modules)
 

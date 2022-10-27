@@ -28,9 +28,6 @@
         <?js if (doc.variation) { ?>
             <sup class="variation"><?js= doc.variation ?></sup>
         <?js } ?></h2>
-        <?js if (doc.classdesc) { ?>
-            <div class="class-description"><?js= doc.classdesc ?></div>
-        <?js } ?>
     <?js } else if (doc.kind === 'module' && doc.modules) { ?>
         <?js doc.modules.forEach(function(module) { ?>
             <?js if (module.classdesc) { ?>
@@ -50,19 +47,74 @@
         <?js doc.modules.forEach(function(module) { ?>
             <?js= self.partial('method.tmpl', module) ?>
         <?js }) ?>
+
     <?js } else if (doc.kind === 'class') { ?>
+        <?js
+        // Class Information
+        ?>
+        <div class="header-details-mini">
+        <span><?js= self.linkto(doc.longname, '#') ?></span>
+        <?js if (doc.meta && self.outputSourceFiles) {?>
+            <span> | source:
+            <?js= self.linkto(doc.meta.shortpath) ?>, <?js= self.linkto(doc.meta.shortpath, 'line ' + doc.meta.lineno, null, 'line' + doc.meta.lineno) ?>
+            </span>
+        <?js } ?>
+        </div>
+
+        <?js if (doc.classdesc) { ?>
+            <div class="class-description"><?js= doc.classdesc ?></div>
+        <?js } ?>
+
+        <?js if (doc.examples && doc.examples.length) { ?>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
+            <?js= self.partial('examples.tmpl', doc.examples) ?>
+        <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
+        <?js
+        // Constructor information is present in the doc object for the class
+        // so method is producing here the constructor documentation
+        // Unclear what happens with the actual constructor docklet
+        ?>
         <?js= self.partial('method.tmpl', doc) ?>
+
+    <?js } else if (doc.kind === 'namespace') { ?>
+        <?js
+        // Namespace Information
+        ?>
+        <div class="header-details-mini">
+        <span><?js= self.linkto(doc.longname, '#') ?></span>
+        <?js if (doc.meta && self.outputSourceFiles) {?>
+            <span> | source:
+            <?js= self.linkto(doc.meta.shortpath) ?>, <?js= self.linkto(doc.meta.shortpath, 'line ' + doc.meta.lineno, null, 'line' + doc.meta.lineno) ?>
+            </span>
+        <?js } ?>
+        </div>
+
+        <?js if (doc.description) { ?>
+            <div class="class-description"><?js= doc.description ?></div>
+        <?js } ?>
+
+        <?js if (doc.examples && doc.examples.length) { ?>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
+            <?js= self.partial('examples.tmpl', doc.examples) ?>
+        <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
     <?js } else { ?>
         <?js if (doc.description) { ?>
             <div class="description"><?js= doc.description ?></div>
         <?js } ?>
 
-        <?js= self.partial('details.tmpl', doc) ?>
-
         <?js if (doc.examples && doc.examples.length) { ?>
-            <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+            <h5>Example<?js= doc.examples.length > 1? 's':'' ?></h5>
             <?js= self.partial('examples.tmpl', doc.examples) ?>
         <?js } ?>
+
+        <?js= self.partial('details.tmpl', doc) ?>
+
     <?js } ?>
     </div>
 

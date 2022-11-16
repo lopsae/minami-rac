@@ -1,8 +1,9 @@
 Changelog
 =========
 
-1.4.2 - IN PROGRESS
--------------------
+1.4.2 - 2022 November 16th
+--------------------------
+Correction of monospace font to Source Code Pro
 + Changed monospace font to `Source Code Pro`, since `Consolas` was not available
 + Adjusted sizing for `code` and `prettyprint` elements
 
